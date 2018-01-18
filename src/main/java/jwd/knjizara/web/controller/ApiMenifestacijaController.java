@@ -16,11 +16,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-
+import jwd.knjizara.model.Knjiga;
 import jwd.knjizara.model.Manifestacija;
 import jwd.knjizara.service.ManifestacijaService;
 import jwd.knjizara.support.ManifestacijaDTOTOManifestacija;
 import jwd.knjizara.support.ManifestacijaTOManifestacijaDTO;
+import jwd.knjizara.web.dto.KnjigaDTO;
 import jwd.knjizara.web.dto.ManifestacijaDTO;
 
 
@@ -42,17 +43,13 @@ public class ApiMenifestacijaController {
 				@RequestParam(required=false) String mestoOdrzavanja,
 				@RequestParam(defaultValue="0") int pageNum){
 			
-		
+
 			Page<Manifestacija> manifestacije = null;
-			if(naziv != null || datumOdrzavanja != null || mestoOdrzavanja != null ) { //|| nazivPivare != null ||  kolicina != null) {
-				manifestacije = manifestacijaService.pretraga(naziv, datumOdrzavanja, mestoOdrzavanja, pageNum); //nazivPivare,  kolicina, pageNum); //nazivPivare,
+			if(naziv != null || datumOdrzavanja != null || mestoOdrzavanja != null ) { 
+				manifestacije = manifestacijaService.pretraga(naziv, datumOdrzavanja, mestoOdrzavanja, pageNum); 
 			//Dugme Nestalo
 			}else{
-//			if(proveraNestalo == true){
-//					manifestacije = manifestacijaService.nestalo(pageNum);
-//				}else{
-//				manifestacije = manifestacijaService.findAll(pageNum);
-//			}
+				manifestacije = manifestacijaService.findAll(pageNum);
 		}	
 			HttpHeaders headers = new HttpHeaders();
 			headers.add("totalPages", Integer.toString(manifestacije.getTotalPages()) );
@@ -60,10 +57,9 @@ public class ApiMenifestacijaController {
 					toMenifestacijaDTO.convert(manifestacije.getContent()),
 					headers,
 					HttpStatus.OK);
-		}
+		}	
 		
-		@RequestMapping(method=RequestMethod.GET,
-						value="/{id}")
+		@RequestMapping(method=RequestMethod.GET, value="/{id}")
 		public ResponseEntity<ManifestacijaDTO> get(
 				@PathVariable Long id){
 			Manifestacija manifestacija = manifestacijaService.findOne(id);
@@ -101,8 +97,7 @@ public class ApiMenifestacijaController {
 //			
 //		}
 		
-		@RequestMapping(method=RequestMethod.PUT,
-				value="/{id}")
+		@RequestMapping(method=RequestMethod.PUT, value="/{id}")
 		public ResponseEntity<ManifestacijaDTO> edit(
 				@PathVariable Long id,
 				@RequestBody ManifestacijaDTO izmenjen){
@@ -118,8 +113,7 @@ public class ApiMenifestacijaController {
 					HttpStatus.OK);
 		}
 		
-		@RequestMapping(method=RequestMethod.DELETE,
-				value="/{id}")
+		@RequestMapping(method=RequestMethod.DELETE, value="/{id}")
 		public ResponseEntity<ManifestacijaDTO> delete(@PathVariable Long id){
 			manifestacijaService.remove(id);
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);

@@ -10,8 +10,7 @@ public class PivoDTO {
 	private String pivaraNaziv;
 	private Long pivaraId;
 	
-	private Long vrstaPivaId;
-	private String vrstaPivaNaziv;
+
 	
 	
 	public Long getId() {

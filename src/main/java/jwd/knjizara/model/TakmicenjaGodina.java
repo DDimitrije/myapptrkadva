@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -27,7 +28,7 @@ public class TakmicenjaGodina {
 //	@OneToMany(mappedBy="takmicenjagodina",fetch=FetchType.LAZY,cascade=CascadeType.ALL)
 //	private List<Trka> trke = new ArrayList<>();
 	
-	@OneToMany(mappedBy="takmicenjagodina",fetch=FetchType.LAZY,cascade=CascadeType.ALL)
+	@OneToMany(mappedBy="takmicenjaGodina",fetch=FetchType.LAZY,cascade=CascadeType.ALL)
 	private List<Manifestacija> manifestacije = new ArrayList<>();
 	
 	public Long getId() {
