@@ -11,7 +11,7 @@ public interface ManifestacijaService {
 	Manifestacija findOne(Long id);
 	void save(Manifestacija manifestacija);
 	void remove(Long id);
-	Page<Manifestacija> findByTakmicenjaGodinaId(int pageNum, Long takmicenjaGodinaId);//pivaraID
+	Page<Manifestacija> findByTakmicenjaGodinaId( int pageNum, Long takmicenjaGodinaId);//pivaraID
 	Page<Manifestacija> pretraga(
 			@Param("naziv") String naziv, 
 			@Param("datumOdrzavanja") String datumOdrzavanja, 

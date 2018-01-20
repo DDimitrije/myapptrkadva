@@ -10,8 +10,7 @@ import org.springframework.stereotype.Repository;
 import jwd.knjizara.model.Knjiga;
 
 @Repository
-public interface KnjigaRepository 
-	extends JpaRepository<Knjiga, Long> {
+public interface KnjigaRepository extends JpaRepository<Knjiga, Long> {
 
 	Page<Knjiga> findByIzdavacId(Long mestoId, Pageable pageRequest);
 

@@ -44,7 +44,7 @@ public class ApiMenifestacijaController {
 				@RequestParam(defaultValue="0") int pageNum){
 			
 
-			Page<Manifestacija> manifestacije = null;
+			Page<Manifestacija> manifestacije;
 			if(naziv != null || datumOdrzavanja != null || mestoOdrzavanja != null ) { 
 				manifestacije = manifestacijaService.pretraga(naziv, datumOdrzavanja, mestoOdrzavanja, pageNum); 
 			//Dugme Nestalo
